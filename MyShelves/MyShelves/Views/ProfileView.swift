@@ -10,6 +10,8 @@ import SwiftUI
 struct ProfileView: View {
     
     @EnvironmentObject var authVM : AuthViewModel
+//    @State private var homePressed : Bool = false
+//    @State private var shelvesPressed : Bool = false
     
     var body: some View {
         if let user = authVM.currentUser {
@@ -52,25 +54,36 @@ struct ProfileView: View {
                     }
                     
                     Section("Pages") {
-                        Button {
-                            NavigationLink {
-                                HomeView()
-                            } label: {
-                                Text("")
-                            }
+                        
+                        NavigationLink {
+                            HomeView()
                         } label: {
                             SettingsRowView(imageName: "house.fill", title: "HomePage", tintColor: Color(.systemBrown))
                         }
-                        
-                        Button {
-                            NavigationLink {
-                                ShelvesView()
-                            } label: {
-                                Text("")
-                            }
+                        NavigationLink {
+                            ShelvesView()
                         } label: {
                             SettingsRowView(imageName: "books.vertical.fill", title: "Your Shelves", tintColor: Color(.systemBrown))
+
                         }
+                        
+//                        Button(action: {
+//                            homePressed.toggle()
+//                            
+//                        }, label: {
+//                            SettingsRowView(imageName: "house.fill", title: "HomePage", tintColor: Color(.systemBrown))
+//                        })
+//                       
+//
+//                        Button {
+//                            NavigationLink {
+//                                ShelvesView()
+//                            } label: {
+//                                Text("")
+//                            }
+//                        } label: {
+//                            SettingsRowView(imageName: "books.vertical.fill", title: "Your Shelves", tintColor: Color(.systemBrown))
+//                        }
                         
                         
                     }
@@ -96,6 +109,6 @@ struct ProfileView: View {
     }
 }
 
-#Preview {
-    ProfileView()
-}
+//#Preview {
+//    ProfileView()
+//}

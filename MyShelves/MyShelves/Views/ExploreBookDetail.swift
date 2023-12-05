@@ -23,17 +23,20 @@ struct ExploreBookDetail: View {
                     .padding(.horizontal)
                     .padding(.top)
                 
-                HStack {
-                    ExploreCoverView(book_image: book.book_image)
-                    Button {
-                        Task {
-                           await addVM.addBookFromExplore(book: book)
-                        }
-                         
-                    } label: {
-                        Text("Add to your Shelves")
+                
+                ExploreCoverView(book_image: book.book_image)
+                
+                Button {
+                    Task {
+                       await addVM.addBookFromExplore(book: book)
                     }
+                     
+                } label: {
+                    Text("Add to your Shelves")
                 }
+                .buttonStyle(.bordered)
+                .tint(Color(.systemBrown))
+            
                 
             }
             Section {

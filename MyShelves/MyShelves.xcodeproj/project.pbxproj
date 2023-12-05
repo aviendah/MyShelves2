@@ -10,6 +10,7 @@
 		DE0072422B1D2EBF00CF589F /* ShelvesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0072412B1D2EBF00CF589F /* ShelvesView.swift */; };
 		DE0072442B1D307B00CF589F /* AddBookViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0072432B1D307B00CF589F /* AddBookViewModel.swift */; };
 		DE0072462B1D329800CF589F /* LibraryBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0072452B1D329800CF589F /* LibraryBook.swift */; };
+		DE0072482B1D504700CF589F /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE0072472B1D504700CF589F /* Launch Screen.storyboard */; };
 		DE2FF7B62B1CE8810005C946 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2FF7B52B1CE8810005C946 /* User.swift */; };
 		DE2FF7B82B1CE9960005C946 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2FF7B72B1CE9960005C946 /* ProfileView.swift */; };
 		DE2FF7BA2B1CEBD40005C946 /* SettingsRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2FF7B92B1CEBD40005C946 /* SettingsRowView.swift */; };
@@ -56,6 +57,7 @@
 		DE9186422B1A5C5F004E8F1E /* ExploreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9186412B1A5C5F004E8F1E /* ExploreViewModel.swift */; };
 		DE9186442B1A5D46004E8F1E /* BestSellerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9186432B1A5D46004E8F1E /* BestSellerModel.swift */; };
 		DE9186462B1A5D86004E8F1E /* ExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9186452B1A5D86004E8F1E /* ExploreView.swift */; };
+		DEA5BA812B1EB79F005A9F76 /* LibraryBookDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA5BA802B1EB79F005A9F76 /* LibraryBookDetail.swift */; };
 		DEC467282B1CB8ED0077F986 /* ExploreBookDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC467272B1CB8ED0077F986 /* ExploreBookDetail.swift */; };
 		DEC4672A2B1CB9DA0077F986 /* ExploreCoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC467292B1CB9DA0077F986 /* ExploreCoverView.swift */; };
 		DEC4672C2B1CD1720077F986 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DEC4672B2B1CD1720077F986 /* GoogleService-Info.plist */; };
@@ -73,6 +75,7 @@
 		DE0072412B1D2EBF00CF589F /* ShelvesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShelvesView.swift; sourceTree = "<group>"; };
 		DE0072432B1D307B00CF589F /* AddBookViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBookViewModel.swift; sourceTree = "<group>"; };
 		DE0072452B1D329800CF589F /* LibraryBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryBook.swift; sourceTree = "<group>"; };
+		DE0072472B1D504700CF589F /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		DE2FF7B52B1CE8810005C946 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		DE2FF7B72B1CE9960005C946 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		DE2FF7B92B1CEBD40005C946 /* SettingsRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRowView.swift; sourceTree = "<group>"; };
@@ -93,6 +96,7 @@
 		DE9186412B1A5C5F004E8F1E /* ExploreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewModel.swift; sourceTree = "<group>"; };
 		DE9186432B1A5D46004E8F1E /* BestSellerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestSellerModel.swift; sourceTree = "<group>"; };
 		DE9186452B1A5D86004E8F1E /* ExploreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreView.swift; sourceTree = "<group>"; };
+		DEA5BA802B1EB79F005A9F76 /* LibraryBookDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryBookDetail.swift; sourceTree = "<group>"; };
 		DEC467272B1CB8ED0077F986 /* ExploreBookDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreBookDetail.swift; sourceTree = "<group>"; };
 		DEC467292B1CB9DA0077F986 /* ExploreCoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreCoverView.swift; sourceTree = "<group>"; };
 		DEC4672B2B1CD1720077F986 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -180,6 +184,8 @@
 			children = (
 				DE9186352B1A5BB0004E8F1E /* ContentView.swift */,
 				DE2FF7F52B1CF9290005C946 /* HomeView.swift */,
+				DEA5BA802B1EB79F005A9F76 /* LibraryBookDetail.swift */,
+				DE0072472B1D504700CF589F /* Launch Screen.storyboard */,
 				DEC4673A2B1CD6980077F986 /* InputView.swift */,
 				DE0072412B1D2EBF00CF589F /* ShelvesView.swift */,
 				DE2FF7B92B1CEBD40005C946 /* SettingsRowView.swift */,
@@ -334,6 +340,7 @@
 				DE2FF7BE2B1CF4A50005C946 /* GoogleService-Info (2).plist in Resources */,
 				DE91863B2B1A5BB2004E8F1E /* Preview Assets.xcassets in Resources */,
 				DEC4672C2B1CD1720077F986 /* GoogleService-Info.plist in Resources */,
+				DE0072482B1D504700CF589F /* Launch Screen.storyboard in Resources */,
 				DE9186382B1A5BB2004E8F1E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -350,6 +357,7 @@
 				DE9186422B1A5C5F004E8F1E /* ExploreViewModel.swift in Sources */,
 				DE3BF2532B1BFF9E00AD0EE1 /* SearchViewModel.swift in Sources */,
 				DE0072422B1D2EBF00CF589F /* ShelvesView.swift in Sources */,
+				DEA5BA812B1EB79F005A9F76 /* LibraryBookDetail.swift in Sources */,
 				DE9186362B1A5BB0004E8F1E /* ContentView.swift in Sources */,
 				DEC467282B1CB8ED0077F986 /* ExploreBookDetail.swift in Sources */,
 				DE3BF24F2B1BFF1900AD0EE1 /* BookListModel.swift in Sources */,
@@ -498,6 +506,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MyShelves/Preview Content\"";
@@ -506,6 +515,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -525,7 +535,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"ASSETCATALOG_COMPILER_APPICON_NAME[sdk=iphoneos*]" = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MyShelves/Preview Content\"";
@@ -534,6 +546,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

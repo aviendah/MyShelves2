@@ -9,13 +9,13 @@ import Foundation
 
 struct BookListModel : Codable {
     let totalItems : Int
-    var items : [BookModel]
+    var items : [BookModel]?
     
 }
 
 struct BookModel : Codable, Identifiable {
     let id : String
-    let volumeInfo : VolumeModel
+    let volumeInfo : VolumeModel?
 }
 
 struct VolumeModel : Codable, Identifiable {
@@ -25,8 +25,7 @@ struct VolumeModel : Codable, Identifiable {
     let title : String
     let authors : [String]
     let imageLinks : ImageLinkModel
-    let description : String
-    let publishedDate : String
+    let description : String?
     let industryIdentifiers : [ISBNModel]
 }
 

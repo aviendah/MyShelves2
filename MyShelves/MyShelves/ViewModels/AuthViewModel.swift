@@ -15,6 +15,8 @@ import FirebaseFirestore
 class AuthViewModel : ObservableObject {
     @Published var userSession: FirebaseAuth.User?
     @Published var currentUser: User?
+    @Published var shelves = [LibraryBook]()
+    let db = Firestore.firestore()
     
     init() {
         self.userSession = Auth.auth().currentUser
@@ -63,8 +65,40 @@ class AuthViewModel : ObservableObject {
     
     func fetchUser() async {
         guard let uid = Auth.auth().currentUser?.uid else { return }
-        guard let snapshot = try? await Firestore.firestore().collection("users").document(uid).getDocument() else {return}
+        guard let snapshot = try? await db.collection("users").document(uid).getDocument() else {return}
         self.currentUser = try? snapshot.data(as: User.self)
         print("DEBUG: Current user is \(String(describing: self.currentUser))")
+    }
+    
+    func fetchShelves() async {
+        self.shelves.removeAll()
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        db.collection("users/\(uid)/shelves").getDocuments() { (querySnapshot, err) in
+          if let err = err {
+            print("Error getting documents: \(err)")
+          } else {
+            for document in querySnapshot!.documents {
+                do {
+                    self.shelves.append(try document.data(as: LibraryBook.self))
+                    print("\(document.documentID) => \(document.data())")
+                } catch {
+                    print("Error adding documents: \(error)")
+                }
+            }
+          }
+        }
+
+        
+//        do {
+//            let querySnapshot = try await db.collection("users").document(uid).collection("shelves").getDocuments()
+//            for document in querySnapshot.documents {
+////                if let book = try? document.data(as: LibraryBook.self) {
+////                    self.shelves.append(book)
+////                    print(book.title)
+////                }
+//            }
+//        } catch {
+//            print("Error: \(error.localizedDescription)")
+//        }
     }
 }

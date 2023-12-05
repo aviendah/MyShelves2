@@ -20,18 +20,22 @@ struct ShelvesView: View {
     var body: some View {
         NavigationStack {
             List {
-                ForEach(db.collection("users").document(user!.uid).collection("shelves")) { book in
+
+                ForEach(authVM.shelves) { book in
                     NavigationLink {
-                        ExploreBookDetail(book: book)
+                        LibraryBookDetail(book: book)
                     } label: {
                         Text(book.title)
                     }
                 }
                 
-                
             }
-            .navigationTitle("NYT Best Sellers")
+            .navigationTitle("My Shelves")
         }
+        .task(id: 1, priority: .high, {
+            await authVM.fetchUser()
+            await authVM.fetchShelves()
+        })
     }
 }
 

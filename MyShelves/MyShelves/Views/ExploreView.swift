@@ -26,7 +26,14 @@ struct ExploreView: View {
                 }
                 
             }
-            .navigationTitle("NYT Best Sellers")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text("NYT Best Sellers")
+                        .font(.largeTitle)
+                        .accessibilityAddTraits(.isHeader)
+                }
+            }
         }
         
         

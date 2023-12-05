@@ -12,6 +12,7 @@ struct SearchView: View {
     @ObservedObject var search = SearchViewModel()
     let searchController = UISearchController.self
     @State var query : String = ""
+    @State var searchResults = [BookModel]()
     
     var body: some View {
         NavigationStack {
@@ -25,14 +26,22 @@ struct SearchView: View {
                     Text("Search")
                 })
                 List {
-                    ForEach(search.resultList.items) { book in
-                        NavigationLink {
-                            BookDetail(book: book.volumeInfo)
-                        } label: {
-                            Text(book.volumeInfo.title)
-                            
+                    if let searchResults = search.resultList.items {
+                        ForEach(searchResults) { book in
+                            NavigationLink {
+                                if let bookItem = book.volumeInfo {
+                                    BookDetail(book: bookItem)
+                                }
+                            } label: {
+                                if let title = book.volumeInfo?.title {
+                                    Text(title)
+                                } else {
+                                    Text("")
+                            }
                         }
-                        
+                    }
+                    } else {
+                        Text("No results available. Please try again.")
                     }
                 }
             }

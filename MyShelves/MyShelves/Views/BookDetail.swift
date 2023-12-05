@@ -13,28 +13,43 @@ struct BookDetail: View {
     @ObservedObject var search = SearchViewModel()
     @ObservedObject var addVM = AddBookViewModel()
     
+    
     var body: some View {
+        
+        var hideCoverView = search.hideCoverView(isbn: search.fetchISBN(book: book))
         
         VStack(alignment: .center, spacing: 20) {
             Text(book.title)
                 .font(.system(size: 30))
                 .padding(.horizontal)
-            HStack {
+            
+            if !hideCoverView {
                 CoverView(isbn: search.fetchISBN(book: book))
-                Button {
-                    Task {
-                       await addVM.addBookFromSearch(book: book)
-                    }
-                     
-                } label: {
-                    Text("Add to your Shelves")
-                }
             }
-            CoverView(isbn: search.fetchISBN(book: book))
+
+            Text(book.authors[0])
+            Button {
+                Task {
+                    await addVM.addBookFromSearch(book: book)
+                }
+                
+            } label: {
+                Text("Add to your Shelves")
+            }
+            .buttonStyle(.bordered)
+            .tint(Color(.systemBrown))
+            
             ScrollView(.vertical) {
-                Text(book.description)
-                    .font(.system(size: 18))
-                    .padding(.horizontal)
+                if book.description != nil {
+                    Text(book.description!)
+                        .font(.system(size: 18))
+                        .padding(.horizontal)
+                } else {
+                    Text("There is no description at this time.")
+                        .font(.system(size: 18))
+                        .padding(.horizontal)
+                }
+                
             }
         }
         

@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import FirebaseFirestore
+import SwiftUI
 
 class SearchViewModel : ObservableObject {
     @Published private(set) var resultList : BookListModel = BookListModel(totalItems: -1, items: [BookModel]())
@@ -21,7 +22,9 @@ class SearchViewModel : ObservableObject {
     
     @MainActor
     func fetchResults(query: String) async {
-        resultList.items.removeAll()
+        if resultList.items != nil {
+            resultList.items!.removeAll()
+        }
         let fullQuery = url + query + apiKey
         
         if let url = URL(string: fullQuery) {
@@ -42,6 +45,7 @@ class SearchViewModel : ObservableObject {
         }
     }
     
+    
     func fetchISBN(book: VolumeModel ) -> String {
         var isbn : String
         let isbnList = book.industryIdentifiers
@@ -55,49 +59,28 @@ class SearchViewModel : ObservableObject {
         return isbn
     }
     
-    func fetchCoverURL(isbn: String) -> String {
-        let urlStr = "https://covers.openlibrary.org/b/isbn/\(isbn)-M.jpg"
-        return urlStr
-        
+    func fetchListItems() -> [BookModel] {
+        let emptyList = [BookModel]()
+        guard let listItems = self.resultList.items else { return emptyList }
+        return listItems
     }
     
-    func downloadImage(_ urlString: String, completion: ((_ _image: UIImage?, _ urlString: String?) -> ())?) {
-           guard let url = URL(string: urlString) else {
-              completion?(nil, urlString)
-              return
-          }
-          URLSession.shared.dataTask(with: url) { (data, response,error) in
-             if let error = error {
-                print("error in downloading image: \(error)")
-                completion?(nil, urlString)
-                return
-             }
-             guard let httpResponse = response as? HTTPURLResponse,(200...299).contains(httpResponse.statusCode) else {
-                completion?(nil, urlString)
-                return
-             }
-             if let data = data, let image = UIImage(data: data) {
-                completion?(image, urlString)
-                return
-             }
-             completion?(nil, urlString)
-          }.resume()
-       }
+
+    func hideCoverView(isbn: String) -> Bool{
+        var hideCover : Bool = true
+        let url = URL(string: "https://covers.openlibrary.org/b/isbn/\(isbn)-M.jpg")
+        url?.isReachable { success in
+            if success {
+                hideCover = false
+            } else {
+                hideCover = true
+            }
+        }
+        return hideCover
+    }
     
     
-//    func createUser(withEmail email: String, password: String, username: String) async throws {
-    //        do {
-    //            let result = try await Auth.auth().createUser(withEmail: email, password: password)
-    //            self.userSession = result.user
-    //            let user = User(id: result.user.uid, username: username, email: email)
-    //            let encodeUser = try Firestore.Encoder().encode(user)
-    //            try await Firestore.firestore().collection("users").document(user.id).setData(encodeUser)
-    //            await fetchUser()
-    //        } catch {
-    //            print("Failed to create user with error \(error.localizedDescription)")
-    //        }
-    //    }
-    
+
 }
 
 extension SearchViewModel {
@@ -119,23 +102,14 @@ extension SearchViewModel {
 
 }
 
-//let url = URL(String: urlStr)
-//let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-//    if let error = error {
-//        // handle error
-//        self.imgError.toggle()
-//        self.error = SearchModelError.customError(error: error)
-//        return
-//       }
-//       guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
-//          // handle error
-//           self.imgError.toggle()
-//           self.error = SearchModelError.customError(error: error?.localizedDescription)
-//          return
-//       }
-//       if let data = data {
-//          // process data
-//           
-//       }
-//    }
-//    task.resume()
+
+
+extension URL {
+    func isReachable(completion: @escaping (Bool) -> ()) {
+        var request = URLRequest(url: self)
+        request.httpMethod = "HEAD"
+        URLSession.shared.dataTask(with: request) { _, response, _ in
+            completion((response as? HTTPURLResponse)?.statusCode == 200)
+        }.resume()
+    }
+}

@@ -6,9 +6,14 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct HomeView: View {
+    
+    @EnvironmentObject var authVM : AuthViewModel
+    
     var body: some View {
+        
         NavigationStack {
             List {
                 
@@ -27,10 +32,22 @@ struct HomeView: View {
                 } label: {
                     Text("Search")
                 }
+                NavigationLink {
+                    ProfileView()
+                } label: {
+                    Text("My Profile")
+                }
                 
             }
-            .listStyle(.grouped)
-            .navigationTitle("Home Library")
+//            .listStyle(.grouped)
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text("The Library")
+                        .font(.largeTitle)
+                        .accessibilityAddTraits(.isHeader)
+                }
+            }
         }
         .padding()
     }

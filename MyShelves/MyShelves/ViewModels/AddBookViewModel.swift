@@ -15,11 +15,16 @@ class AddBookViewModel : ObservableObject {
     let user = Auth.auth().currentUser
     
     func addBookFromSearch(book: VolumeModel) async {
+        @DocumentID var id: String? = UUID().uuidString
         do {
-           try await db.collection("users").document(user!.uid).collection("shelves").document().setData([
+            var bookDescription = book.description ?? "There is no description at this time."
+            
+           try await
+                db.collection("users").document(user!.uid).collection("shelves").document().setData([
+                "id": id as Any,
                 "title": book.title,
                 "author": book.authors.first!,
-                "description": book.description,
+                "description": bookDescription,
                 "coverURL" : book.imageLinks.thumbnail,
                 "isbn": book.industryIdentifiers.first!.identifier!,
                 "review": ""
@@ -30,8 +35,11 @@ class AddBookViewModel : ObservableObject {
     }
     
     func addBookFromExplore(book: bsBookModel) async {
+        @DocumentID var id: String? = UUID().uuidString
+        
         do {
            try await db.collection("users").document(user!.uid).collection("shelves").document().setData([
+            "id": id as Any,
                 "title": book.title,
                 "author": book.author,
                 "description": book.description,
